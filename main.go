@@ -63,8 +63,8 @@ func main() {
 	//bundle.MustLoadMessageFile("en.json")
 	//bundle.MustLoadMessageFile("zh.json")
 	bundle.RegisterUnmarshalFunc("yaml", yaml.Unmarshal)
-	bundle.MustLoadMessageFile("en.yaml")
-	bundle.MustLoadMessageFile("zh.yaml")
+	bundle.MustLoadMessageFile("./locales/en-US/en.yaml")
+	bundle.MustLoadMessageFile("./locales/zh-CN/zh.yaml")
 
 	tag, err := locale.Detect()
 	if err != nil {
