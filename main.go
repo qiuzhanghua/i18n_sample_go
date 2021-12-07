@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/Xuanwo/go-locale"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
@@ -41,13 +40,13 @@ func main() {
 	messages = &i18n.Message{
 		ID:          "Notifications",
 		Description: "The number of unread notifications a user has",
-		One:         "<<.Name>> has <<.Count>> notification.",
+		One:         "<<.Name>> has 一(<<.Count>>) notification.",
 		Other:       "<<.Name>> has <<.Count>> notifications.",
 		LeftDelim:   "<<",
 		RightDelim:  ">>",
 	}
 
-	notificationsCount := 2
+	notificationsCount := 1
 	translation = loc.MustLocalize(&i18n.LocalizeConfig{
 		DefaultMessage: messages,
 		TemplateData: map[string]interface{}{
@@ -60,10 +59,12 @@ func main() {
 	fmt.Println(translation)
 
 	// Unmarshaling from files
-	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
+	//bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
+	//bundle.MustLoadMessageFile("en.json")
+	//bundle.MustLoadMessageFile("zh.json")
 	bundle.RegisterUnmarshalFunc("yaml", yaml.Unmarshal)
-	bundle.MustLoadMessageFile("en.json")
-	bundle.MustLoadMessageFile("zh.json")
+	bundle.MustLoadMessageFile("en.yaml")
+	bundle.MustLoadMessageFile("zh.yaml")
 
 	tag, err := locale.Detect()
 	if err != nil {
@@ -73,26 +74,23 @@ func main() {
 	fmt.Println(tag)
 
 	loc = i18n.NewLocalizer(bundle, tag.String())
-	messagesCount = 10
+
 	translation = loc.MustLocalize(&i18n.LocalizeConfig{
-		MessageID: "messages",
+		MessageID: "everything",
+	})
+	fmt.Println(translation)
+
+	messagesCount = 1
+	translation = loc.MustLocalize(&i18n.LocalizeConfig{
+		MessageID: "tdp.hello_world",
 		TemplateData: map[string]interface{}{
-			"Name":  "Alex",
+			"Name":  "Daniel",
 			"Count": messagesCount,
 		},
 		PluralCount: messagesCount,
 	})
 
 	fmt.Println(translation)
-
-	tags, err := locale.DetectAll()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for i, v := range tags {
-		fmt.Println(i, v)
-	}
 
 }
 
