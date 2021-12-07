@@ -1,0 +1,8 @@
+{
+  "hello_world": "你好",
+  "messages": {
+    "description": "The number of messages a person has",
+    "one": "{{.Name}} 有 {{.Count}} message.",
+    "other": "{{.Name}} 有 {{.Count}} messages."
+  }
+}
