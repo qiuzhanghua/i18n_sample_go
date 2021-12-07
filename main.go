@@ -6,6 +6,7 @@ import (
 	"github.com/Xuanwo/go-locale"
 	"github.com/nicksnyder/go-i18n/v2/i18n"
 	"golang.org/x/text/language"
+	yaml "gopkg.in/yaml.v2"
 	"log"
 )
 
@@ -60,6 +61,7 @@ func main() {
 
 	// Unmarshaling from files
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
+	bundle.RegisterUnmarshalFunc("yaml", yaml.Unmarshal)
 	bundle.MustLoadMessageFile("en.json")
 	bundle.MustLoadMessageFile("zh.json")
 
