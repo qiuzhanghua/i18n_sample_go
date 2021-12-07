@@ -1,0 +1,18 @@
+# Comment
+everything:
+    description: everything description
+    zero: "0"
+    one: "1"
+    two: "2"
+    few: few
+    many: many
+    other: other
+
+tdp:
+    hello_world:
+        description: "Hello description"
+#        zero: "{{.Name}} 没有 message."
+        one: "{{.Name}} 有一 message."
+#        two: "{{.Name}} 有两 messages."
+        other: "{{.Name}} 有 {{.Count}} messages."
+
